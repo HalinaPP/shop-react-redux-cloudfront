@@ -1,5 +1,16 @@
 # React-shop-cloudfront
 
+### Manual Deployment
+
+**S3 Bucket**: https://candy-shop.s3.amazonaws.com/index.html
+**CloudFront distribution**: https://d3hcjv9565s395.cloudfront.net
+
+
+### Automated Deployment
+
+**S3 Bucket**: https://candy-shop-auto-deploy-lts.s3.amazonaws.com/index.html
+**CloudFront distribution**: https://d1jp2f0ltc0mup.cloudfront.net
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
