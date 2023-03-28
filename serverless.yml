@@ -1,11 +1,11 @@
-service: my-store-app
+service: candy-shop-auto-deploy-sl
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: us-east-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -15,16 +15,15 @@ plugins:
   # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
   # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
-  - serverless-s3-cleaner
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: candy-shop-auto-deploy-lts
     distributionFolder: dist
-  s3BucketName: ${self:custom.client.bucketName}
-
+    indexDocument: index.html
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
   serverless-s3-cleaner:
     buckets:
       - ${self:custom.client.bucketName}
@@ -40,8 +39,8 @@ resources:
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
-        # VersioningConfiguration:
-        #   Status: Enabled
+        VersioningConfiguration:
+          Status: Enabled
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:
